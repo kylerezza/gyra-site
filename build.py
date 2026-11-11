@@ -43,7 +43,7 @@ MARK = ('<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27c-6.1 0-11-4
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a1714'/%3E"
            "%3Cpath d='M16 27c-6.1 0-11-4.5-11-10.2C5 11 9.6 6.5 15.5 6.5c5 0 8.9 3.6 8.9 8.2 0 3.9-3.1 6.9-7.1 6.9-3.2 0-5.6-2.3-5.6-5.2 0-2.4 1.9-4.2 4.3-4.2' "
            "fill='none' stroke='%23c8a574' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E")
-DESCRIPTION = "gyra is a one-person studio making small, finished apps for iPhone. Named for the deadliest cat."
+DESCRIPTION = "gyra makes iPhone apps people love, built with taste and precision. Named for the deadliest cat on earth."
 TAIL = ('<svg class="tail" viewBox="0 0 34 92" aria-hidden="true"><path d="M17 0c0 22 2 40-4 58-3 10 2 20 10 26"/>'
         '<path class="ring" d="M16.6 30v.1M15.6 46v.1M12.6 62v.1M22 83.5l.1.1" stroke-width="7.4"/></svg>')
 
@@ -78,7 +78,7 @@ def page(title: str, body: str, depth: int, home: bool = False) -> str:
   {TAIL if home else ''}
   <div class="foot-in">
     <nav aria-label="Footer"><a href="{up}privacy/">Privacy</a><a href="{up}terms/">Terms</a><a href="{up}support/">Support</a><a href="mailto:{EMAIL}">{EMAIL}</a></nav>
-    <p>&copy; 2026 {e(PUBLISHER)}. Small. Precise. Rarely misses.</p>
+    <p>&copy; 2026 {e(PUBLISHER)}. Apps with a killer instinct.</p>
   </div>
 </footer>
 {script}</body>
@@ -97,38 +97,43 @@ def home() -> str:
     if APPS:
         catch = '<ul class="catch">' + "".join(gift(a) for a in APPS) + "</ul>"
     else:
-        catch = ('<div class="empty"><b>Nothing brought home yet.</b>'
-                 '<span>The first one is close. She’s patient; she’s also never late twice.</span></div>')
+        catch = ('<div class="empty"><b>The first catch is on its way.</b>'
+                 '<span>Every gyra app lands here first. Keep watch.</span></div>')
     return f"""
-<section class="hero" aria-labelledby="t">
-  <p class="def"><b>gyra</b> &nbsp;(guy·ruh) &nbsp;n. &nbsp;the deadliest cat.</p>
-  <h1 id="t">Small. Precise. <em>Rarely misses.</em></h1>
-  <p class="lede">gyra is a one-person studio making small, finished apps for iPhone. Each one is stalked for a long time and released only when it lands.</p>
+<section class="world" aria-labelledby="t">
+  <div class="stage" data-stage>
+    <canvas aria-hidden="true"></canvas>
+    <div class="sky-copy">
+      <p class="def"><b>gyra</b> &nbsp;(guy·ruh) &nbsp;n. &nbsp;the deadliest cat.</p>
+      <h1 id="t" aria-label="Precise. Relentless. Rarely misses.">Precise. Relentless. <em>Rarely m<span data-prey>i</span>sses.</em></h1>
+      <p class="lede">gyra makes iPhone apps people love, built with taste and precision. Every detail is hunted down, and nothing leaves until it lands.</p>
+      <a class="cta" href="#catch">See the catch <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+  <aside class="log" aria-label="Hunt log">
+    <p class="log-head"><b>Hunt log</b><span data-stamp></span></p>
+    <p class="say" data-say aria-live="polite">She’s on the hunt.</p>
+    <ol class="log-list" data-log><li>No hunts yet.</li></ol>
+    <div class="log-foot"><span class="ticks" data-ticks aria-hidden="true"></span><span class="rate"><b data-rate>Her rate —</b> · lion 25%</span></div>
+    <p class="fact">The black-footed cat is the deadliest cat on earth: about 6 hunts in 10 end in a catch. Lions land about 1 in 4.</p>
+    <span class="stamp" aria-hidden="true">Caught</span>
+  </aside>
 </section>
-
-<section class="stage" data-stage aria-label="A black-footed cat hunting on the savanna">
-  <canvas aria-hidden="true"></canvas>
-</section>
-<div class="stage-bar">
-  <p class="say" data-say aria-live="polite">She’s on her way.</p>
-  <p class="tally" data-tally hidden></p>
-</div>
-<p class="fact">The black-footed cat is Africa’s smallest wild cat, and its most successful hunter: about 6 hunts in 10 end in a catch. Lions manage about 1 in 4.</p>
 
 <section class="sec" id="catch" aria-labelledby="c">
   <p class="kicker">The catch</p>
-  <h2 id="c">What she brought home.</h2>
-  <p>Cats bring the people they like the best thing they caught. These are ours.</p>
+  <h2 id="c">What she brings home.</h2>
+  <p>Cats bring their best catch to the people they choose. This is where ours land.</p>
   {catch}
 </section>
 
 <section class="sec" aria-labelledby="h">
   <p class="kicker">How she hunts</p>
-  <h2 id="h">Three rules from a very small cat.</h2>
+  <h2 id="h">Built like a predator.</h2>
   <div class="rules">
-    <div class="rule"><span class="n">01</span><h3>Stay small.</h3><p>One person, a few apps, each doing one thing well. Small is how you get close.</p></div>
-    <div class="rule"><span class="n">02</span><h3>Stalk first.</h3><p>Most of the work happens before anyone sees it. Ideas are watched for a long time before the pounce.</p></div>
-    <div class="rule"><span class="n">03</span><h3>Land it.</h3><p>Nothing ships half-caught. If it isn’t right yet, it waits.</p></div>
+    <div class="rule"><span class="n">01</span><h3>Pick the target.</h3><p>One sharp idea, chased until it’s the best version of itself.</p></div>
+    <div class="rule"><span class="n">02</span><h3>Get close.</h3><p>Feel, speed and detail, worked until every tap feels inevitable.</p></div>
+    <div class="rule"><span class="n">03</span><h3>Land it.</h3><p>Nothing ships half-caught. Every release lands clean.</p></div>
   </div>
 </section>
 """
@@ -194,7 +199,7 @@ def main() -> None:
         shutil.copy(STATIC / f, OUT / f)
     (OUT / "CNAME").write_text(DOMAIN + "\n")
     (OUT / ".nojekyll").write_text("")
-    write("index.html", "gyra · the deadliest cat", home(), True)
+    write("index.html", "gyra · apps with a killer instinct", home(), True)
     write("privacy/index.html", "Privacy · gyra", privacy())
     write("support/index.html", "Support · gyra", support())
     write("terms/index.html", "Terms · gyra", terms())
