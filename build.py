@@ -14,7 +14,7 @@ from pathlib import Path
 
 SITE = "gyra"
 DOMAIN = "gyra.io"
-PUBLISHER = "Yucel Sanli"
+PUBLISHER = "gyra"  # shown on the site; the owner asked not to show his personal name
 # TODO(owner): make this address receive mail (email forwarding on the domain).
 EMAIL = "hello@gyra.io"
 EFFECTIVE_DATE = "November 11, 2026"
@@ -143,12 +143,12 @@ def privacy() -> str:
     return f"""
 <h1>Privacy</h1>
 <p class="meta">Effective {e(EFFECTIVE_DATE)}</p>
-<p>This page covers the gyra.io website, published by {e(PUBLISHER)}. Each gyra app has its own privacy policy, linked from its App Store page and listed here when it is released.</p>
+<p>This page covers the gyra.io website. Each gyra app has its own privacy policy, linked from its App Store page and listed here when it is released.</p>
 <h2>This website</h2>
 <p>gyra.io does not use cookies, analytics, advertising or tracking of any kind, and it loads nothing from other companies’ servers. The cat on the home page runs entirely in your browser and remembers nothing after you leave.</p>
 <p>Like every website, the company that hosts the site may keep standard server logs (such as IP address and the page requested) for security and reliability. We don’t use them to identify you.</p>
 <h2>Contact</h2>
-<p>{e(PUBLISHER)} &middot; <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>
 """
 
 
