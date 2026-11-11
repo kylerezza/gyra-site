@@ -1,0 +1,122 @@
+/* gyra.io — the deadliest cat. Paper by day, night savanna by dark mode. The cat is the only thing that moves. */
+:root {
+  --paper: #f4efe6;
+  --surface: #fbf8f2;
+  --ink: #1a1714;
+  --muted: #6b6259;
+  --hair: #d8cfc2;
+  --accent: #b5641f;
+  --coat: #c8a574;
+  --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --calm: cubic-bezier(0.2, 0, 0, 1);
+  --wide: 72rem;
+  --doc: 40rem;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12141c;
+    --surface: #191c26;
+    --ink: #ece6da;
+    --muted: #9a9488;
+    --hair: #2a2d38;
+    --accent: #e8b04b;
+    --coat: #b99a6c;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.head { max-width: var(--wide); margin: 0 auto; padding: 18px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.mark { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 500 1.6rem/1 var(--serif); letter-spacing: -0.01em; }
+.mark svg { width: 26px; height: 26px; }
+.head nav { display: flex; gap: 4px 22px; flex-wrap: wrap; }
+.head nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; padding: 10px 0; }
+.head nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { max-width: var(--wide); margin: 0 auto; padding: 28px 16px 8px; }
+.def { font: 400 0.8rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
+.def b { color: var(--ink); font-weight: 600; }
+.hero h1 { font: 500 clamp(2.8rem, 8vw, 6.4rem)/0.98 var(--serif); letter-spacing: -0.03em; margin: 0 0 22px; text-wrap: balance; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .lede { font-size: 1.15rem; color: var(--muted); max-width: 36rem; margin: 0; }
+
+/* the stage: the cat lives here and only here */
+.stage { position: relative; margin: 28px 0 0; border-block: 1px solid var(--hair); }
+.stage canvas { display: block; width: 100%; height: clamp(250px, 34vw, 380px); touch-action: pan-y; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; cursor: none; }
+@media (hover: none) { .stage canvas { cursor: default; } }
+.stage-bar { max-width: var(--wide); margin: 0 auto; padding: 14px 16px 0; display: flex; justify-content: space-between; gap: 6px 20px; flex-wrap: wrap; min-height: 44px; }
+.say { font: italic 400 1.1rem/1.4 var(--serif); color: var(--ink); margin: 0; }
+.tally { font: 400 0.8rem/1.6 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.fact { max-width: var(--wide); margin: 0 auto; padding: 6px 16px 0; font: 400 0.78rem/1.5 var(--mono); color: var(--muted); }
+.fact a { color: var(--muted); }
+
+/* sections */
+.sec { max-width: var(--wide); margin: 0 auto; padding: 72px 16px 8px; }
+.kicker { font: 400 0.8rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.sec h2 { font: 500 clamp(2rem, 4.6vw, 3.2rem)/1.04 var(--serif); letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: balance; }
+.sec > p { color: var(--muted); max-width: 36rem; font-size: 1.1rem; margin: 0; }
+
+/* the catch: apps as what she brought home */
+.catch { list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.gift {
+  position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center;
+  padding: 18px; border-radius: 18px; background: var(--surface); border: 1px solid var(--hair);
+  text-decoration: none; color: var(--ink); transition: transform 300ms var(--calm), box-shadow 300ms var(--calm);
+}
+.gift:hover { transform: translateY(-3px) rotate(-0.4deg); box-shadow: 0 18px 40px -24px rgba(20, 12, 6, 0.45); color: var(--ink); }
+.gift .icon { width: 64px; height: 64px; border-radius: 15px; background: var(--c, var(--coat)); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+.gift .tag { font: 400 0.72rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.gift h3 { font: 500 1.5rem/1.1 var(--serif); margin: 4px 0 4px; }
+.gift p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.empty {
+  margin-top: 30px; padding: 28px; border: 1.5px dashed var(--hair); border-radius: 18px;
+  display: grid; gap: 6px; max-width: 34rem;
+}
+.empty b { font: 500 1.4rem/1.2 var(--serif); }
+.empty span { color: var(--muted); }
+
+/* how she hunts */
+.rules { display: grid; gap: 28px; margin-top: 34px; }
+@media (min-width: 800px) { .rules { grid-template-columns: repeat(3, 1fr); } }
+.rule { border-top: 1px solid var(--ink); padding-top: 14px; }
+.rule .n { font: 400 0.78rem/1 var(--mono); color: var(--muted); }
+.rule h3 { font: 500 1.7rem/1.1 var(--serif); margin: 10px 0 8px; }
+.rule p { margin: 0; color: var(--muted); }
+
+/* footer, with her tail hanging over the edge */
+.foot { margin-top: 96px; border-top: 1px solid var(--hair); position: relative; }
+.tail { position: absolute; right: 12%; top: -2px; width: 34px; height: 92px; transform-origin: 50% 0; }
+.tail path { fill: none; stroke: var(--coat); stroke-width: 7; stroke-linecap: round; }
+.tail .ring { stroke: var(--ink); }
+.foot.seen .tail { animation: flick 1.6s var(--calm) 1; }
+@keyframes flick { 30% { transform: rotate(9deg); } 60% { transform: rotate(-6deg); } }
+.foot-in { max-width: var(--wide); margin: 0 auto; padding: 30px 16px 44px; display: grid; gap: 10px; color: var(--muted); }
+.foot nav { display: flex; gap: 6px 22px; flex-wrap: wrap; }
+.foot nav a { text-decoration: none; color: var(--ink); padding: 6px 0; }
+.foot p { margin: 0; font-size: 0.9rem; }
+
+/* plain pages: privacy, terms, support */
+main.doc { max-width: var(--doc); margin: 0 auto; padding: 24px 16px 40px; }
+main.doc h1 { font: 500 2.4rem/1.1 var(--serif); letter-spacing: -0.02em; margin: 12px 0 10px; }
+main.doc h2 { font: 500 1.45rem/1.25 var(--serif); margin: 36px 0 8px; }
+main.doc p, main.doc li { line-height: 1.65; }
+main.doc .meta { color: var(--muted); font-size: 0.95rem; }
+
+/* 404 */
+.lost { max-width: var(--doc); margin: 0 auto; padding: 48px 16px 40px; text-align: center; }
+.lost svg { width: min(280px, 70vw); height: auto; }
+.lost h1 { font: 500 2.6rem/1.05 var(--serif); margin: 14px 0 8px; }
+.lost p { color: var(--muted); }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; }
+.btn:hover { color: var(--paper); opacity: 0.9; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+@media print { canvas, .head nav, .tail { display: none !important; } body { background: #fff; color: #000; } }
