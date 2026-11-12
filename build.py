@@ -32,7 +32,11 @@ if PREVIEW:
         {"slug": "sample-three", "name": "Sample Three", "kind": "Game", "line": "Shows how three gifts sit together.", "colour": "#b5641f", "store": None},
     ]
 
+# Per-app pages, written as HTML fragments in apps/<slug>/{index,support,privacy}.html.
+APP_PAGES = [("outnerd", "Outnerd")]
+
 ROOT = Path(__file__).resolve().parent
+APP_DIR = ROOT / "apps"
 OUT = ROOT / ("preview" if PREVIEW else "docs")
 STATIC = ROOT / "static"
 e = html.escape
@@ -255,6 +259,14 @@ def main() -> None:
     write("privacy/index.html", "Privacy · gyra", privacy())
     write("support/index.html", "Support · gyra", support())
     write("terms/index.html", "Terms · gyra", terms())
+    # App pages (privacy, support) live before an app is released, because App Review
+    # needs them. They are not linked from the home page until the app is in APPS.
+    for slug, name in APP_PAGES:
+        for part, title in (("index", name), ("support", f"{name} support"), ("privacy", f"{name} privacy policy")):
+            src = APP_DIR / slug / f"{part}.html"
+            if src.exists():
+                rel = f"{slug}/index.html" if part == "index" else f"{slug}/{part}/index.html"
+                write(rel, f"{title} · gyra", src.read_text(encoding="utf-8"))
     four = page("Not found · gyra", not_found(), 0)
     for a, b in (('href="style.css"', 'href="/style.css"'), ('href="./"', 'href="/"'), ('href="#studio"', 'href="/#studio"'),
                  ('href="support/"', 'href="/support/"'), ('href="privacy/"', 'href="/privacy/"'), ('href="terms/"', 'href="/terms/"')):
