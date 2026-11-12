@@ -33,7 +33,7 @@ if PREVIEW:
     ]
 
 # Per-app pages, written as HTML fragments in apps/<slug>/{index,support,privacy}.html.
-APP_PAGES = [("outnerd", "Outnerd")]
+APP_PAGES = [("outnerd", "Outnerd"), ("stitchwell", "Stitchwell")]
 
 ROOT = Path(__file__).resolve().parent
 APP_DIR = ROOT / "apps"
