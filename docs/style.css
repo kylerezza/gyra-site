@@ -166,6 +166,11 @@ h2.statement em { font-style: italic; color: var(--accent); }
 main.doc { max-width: 42rem; margin: 0 auto; padding: 32px var(--gut) 40px; }
 main.doc h1 { font: 400 2.6rem/1.05 var(--serif); letter-spacing: -0.03em; margin: 12px 0 12px; }
 main.doc h2 { font: 400 1.6rem/1.2 var(--serif); letter-spacing: -0.015em; margin: 40px 0 8px; }
+main.doc h3 { font-size: 1.05rem; font-weight: 600; margin: 24px 0 4px; }
+main.doc .table-scroll { overflow-x: auto; margin: 12px 0; }
+main.doc table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+main.doc th, main.doc td { border: 1px solid var(--hair); padding: 8px 10px; text-align: left; vertical-align: top; }
+main.doc th { background: var(--surface); font-weight: 600; }
 main.doc p, main.doc li { line-height: 1.65; }
 main.doc a { color: var(--ink); background-size: 100% 1px; }
 main.doc .meta { color: var(--muted); font-size: 0.95rem; }
