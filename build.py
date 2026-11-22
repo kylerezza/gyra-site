@@ -253,6 +253,12 @@ def main() -> None:
     OUT.mkdir()
     for f in ("style.css", "cat.js"):
         shutil.copy(STATIC / f, OUT / f)
+    # Ad files read by machines, served as-is: AdMob's seller list at the root (https://gyra.io/app-ads.txt, the domain
+    # on every app's App Store page), and each app's remote ad switch (e.g. stitchwell/ads.json, read by the app).
+    shutil.copy(STATIC / "app-ads.txt", OUT / "app-ads.txt")
+    for switch in STATIC.glob("*/ads.json"):
+        (OUT / switch.parent.name).mkdir(parents=True, exist_ok=True)
+        shutil.copy(switch, OUT / switch.parent.name / "ads.json")
     (OUT / "CNAME").write_text(DOMAIN + "\n")
     (OUT / ".nojekyll").write_text("")
     write("index.html", "gyra · apps with a killer instinct", home(), True)
