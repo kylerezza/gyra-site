@@ -22,7 +22,11 @@ APPLE_EULA = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
 
 # Released apps only. This repo may be public: never list an unreleased app here.
 # colour: the icon swatch until a real icon file exists. store: App Store URL once live.
-APPS: list[dict] = []
+APPS: list[dict] = [
+    # Owner, 2026-11-23: Outnerd is listed in the portfolio. Its tile opens its page here, which links to the App Store.
+    {"slug": "outnerd", "name": "Outnerd", "kind": "Game", "line": "1v1 trivia duels: seven questions, one 70-second clock.",
+     "colour": "#2563c9", "store": "outnerd/", "icon": "outnerd/icon.png"},
+]
 
 PREVIEW = "--preview" in sys.argv
 if PREVIEW:
@@ -98,7 +102,9 @@ def page(title: str, body: str, depth: int, home: bool = False) -> str:
 def gift(a: dict) -> str:
     href = a["store"] or "#catch"
     return (f'<li data-reveal><a class="gift" href="{e(href)}" style="--c:{e(a["colour"])}">'
-            f'<span class="icon" aria-hidden="true"></span><span><span class="tag">{e(a["kind"])}</span>'
+            + (f'<img class="icon" src="{e(a["icon"])}" alt="" width="64" height="64" loading="lazy">' if a.get("icon")
+               else '<span class="icon" aria-hidden="true"></span>')
+            + f'<span><span class="tag">{e(a["kind"])}</span>'
             f'<h3>{e(a["name"])}</h3><p>{e(a["line"])}</p></span></a></li>')
 
 
@@ -247,6 +253,7 @@ def write(rel: str, title: str, body: str, home_page: bool = False) -> None:
     path.write_text(page(title, body, rel.count("/"), home_page), encoding="utf-8")
 
 
+
 def main() -> None:
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -259,6 +266,9 @@ def main() -> None:
     for switch in STATIC.glob("*/ads.json"):
         (OUT / switch.parent.name).mkdir(parents=True, exist_ok=True)
         shutil.copy(switch, OUT / switch.parent.name / "ads.json")
+    for asset in [*STATIC.glob("*/*.jpg"), *STATIC.glob("*/*.png")]:
+        (OUT / asset.parent.name).mkdir(parents=True, exist_ok=True)
+        shutil.copy(asset, OUT / asset.parent.name / asset.name)
     (OUT / "CNAME").write_text(DOMAIN + "\n")
     (OUT / ".nojekyll").write_text("")
     write("index.html", "gyra · apps with a killer instinct", home(), True)
@@ -268,7 +278,8 @@ def main() -> None:
     # App pages (privacy, support) live before an app is released, because App Review
     # needs them. They are not linked from the home page until the app is in APPS.
     for slug, name in APP_PAGES:
-        for part, title in (("index", name), ("support", f"{name} support"), ("privacy", f"{name} privacy policy")):
+        for part, title in (("index", name), ("support", f"{name} support"), ("privacy", f"{name} privacy policy"),
+                            ("rules", f"{name} community rules")):
             src = APP_DIR / slug / f"{part}.html"
             if src.exists():
                 rel = f"{slug}/index.html" if part == "index" else f"{slug}/{part}/index.html"
